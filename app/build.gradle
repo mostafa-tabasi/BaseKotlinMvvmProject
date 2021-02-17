@@ -1,0 +1,89 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.mstf.basekotlinmvvm"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField("String", "BASE_URL", "\"http://www.yourbaseurl.com\"")
+            buildConfigField("String", "API_KEY", "\"YOUR_API_KEY\"")
+        }
+        release {
+            buildConfigField("String", "BASE_URL", "\"http://www.yourbaseurl.com\"")
+            buildConfigField("String", "API_KEY", "\"YOUR_API_KEY\"")
+
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        dataBinding true
+    }
+
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation "com.google.android.material:material:$rootProject.ext.materialVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.ext.constraintLayoutVersion"
+    testImplementation "junit:junit:$rootProject.ext.junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:1.1.2"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
+    implementation 'androidx.activity:activity-ktx:1.2.0'
+    implementation 'androidx.fragment:fragment-ktx:1.3.0'
+
+    // logger
+    implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
+
+    // coroutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutine_version"
+
+    // dagger
+    implementation "com.google.dagger:hilt-android:$rootProject.dagger_version"
+    kapt "com.google.dagger:hilt-android-compiler:$rootProject.dagger_version"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$rootProject.hilt_version"
+    kapt "androidx.hilt:hilt-compiler:$rootProject.hilt_version"
+
+    // database
+    kapt "androidx.room:room-compiler:$rootProject.room_version"
+    implementation "androidx.room:room-runtime:$rootProject.room_version"
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:$rootProject.room_version"
+
+    // image
+    implementation "com.github.bumptech.glide:glide:$rootProject.glide_version"
+
+    // parser
+    implementation "com.google.code.gson:gson:$rootProject.gson_version"
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit_version"
+}

@@ -1,0 +1,30 @@
+package com.mstf.basekotlinmvvm.ui.sample.activity
+
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import androidx.activity.viewModels
+import com.mstf.basekotlinmvvm.BR
+import com.mstf.basekotlinmvvm.R
+import com.mstf.basekotlinmvvm.databinding.ActivitySampleBinding
+import com.mstf.basekotlinmvvm.ui.base.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
+class SampleActivity : BaseActivity<ActivitySampleBinding, SampleActivityViewModel>(),
+    SampleActivityNavigator {
+
+    override val viewModel: SampleActivityViewModel by viewModels()
+    override val bindingVariable: Int get() = BR.viewModel
+    override val layoutId: Int get() = R.layout.activity_sample
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.setNavigator(this)
+    }
+
+    companion object {
+        private const val TAG = "SampleActivity"
+        fun newIntent(context: Context) = Intent(context, SampleActivity::class.java)
+    }
+}
