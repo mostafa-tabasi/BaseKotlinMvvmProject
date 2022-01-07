@@ -66,10 +66,8 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutine_version"
 
     // dagger
-    implementation "com.google.dagger:hilt-android:$rootProject.dagger_version"
-    kapt "com.google.dagger:hilt-android-compiler:$rootProject.dagger_version"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$rootProject.hilt_version"
-    kapt "androidx.hilt:hilt-compiler:$rootProject.hilt_version"
+    implementation "com.google.dagger:hilt-android:$rootProject.hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$rootProject.hilt_version"
 
     // database
     kapt "androidx.room:room-compiler:$rootProject.room_version"
@@ -86,4 +84,8 @@ dependencies {
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit_version"
+
+    // Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$rootProject.nav_version"
 }
